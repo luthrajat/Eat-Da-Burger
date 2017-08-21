@@ -1,0 +1,46 @@
+
+<h1>Eat-Da-Burger (Part 3)</h1>
+<div class="container">
+	<div class="row">
+
+				<div class='col-md-12'>
+					<br>
+					<form action="/burgers/create" method="POST">
+						<input placeholder="Enter a burger name!!!"  rows=2 cols=40 type="text" name="burgername"></input>&nbsp;<button type="submit">Submit</button>
+					</form>
+				</div>
+	</div>
+	<div class="row">
+				<div class='col-md-12'>
+
+					{{#each burgers}}
+						{{#unless this.devoured}}
+							<div class='left-side'>
+								<form id='devour' action="burgers/update/{{this.id}}" method="POST">
+									<input type="hidden" name="devoured" value=1>
+									<input type="text" readonly  id="displayText" value="{{this.id}}. {{this.burger_name}}">
+									<button id="devouredbtn" type="submit">Devour It!</button>
+								</form>
+							</div>
+						{{/unless}}
+					{{/each}}
+					
+				</div>
+	</div>
+	<div class="row">
+
+				<div class='col-md-12'>
+
+					{{#each burgers}}
+							{{#if this.devoured}}
+							<div class='transbox'>
+								<p>{{this.id}}. {{this.burger_name}}</p>
+							</div>
+							<br>
+						{{/if}}
+					{{/each}}
+
+				</div>
+
+	</div>
+</div>
